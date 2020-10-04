@@ -4,6 +4,8 @@ from selenium import webdriver
 import smtplib
 from email.message import EmailMessage
 import time
+import os
+
 
 while(True):
 
@@ -14,19 +16,21 @@ while(True):
     price_id = 'priceblock_ourprice'
     image_url_id = 'landingImage'
 
-    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+    #GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+    #CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
     chrome_options = webdriver.ChromeOptions()
 
     chrome_options.add_argument("--headless")
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-sh-usage')
     chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
-    chrome_options.binary_location = GOOGLE_CHROME_PATH
+    chrome_options.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
 
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.environ.get(
+        'CHROMEDRIVER_PATH'), chrome_options=chrome_options)
     driver.get(URL)
 
 
