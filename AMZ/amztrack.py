@@ -7,7 +7,7 @@ import time
 
 while(True):
 
-    CHROMEDRIVER = r"C:\Users\ADMIN\AppData\Local\Google\Chrome\chromedriver"
+    CHROMEDRIVER = r"C:\Users\KEV\AppData\Local\Google\Chrome\chromedriver"
     URL = "https://www.amazon.com/gp/product/B087N4ZRXV"
 
     product_id = 'productTitle'
@@ -16,6 +16,8 @@ while(True):
 
     options = Options()
     options.add_argument("--headless")
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-sh-usage')
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
     driver = webdriver.Chrome(CHROMEDRIVER, options=options)
@@ -49,21 +51,6 @@ while(True):
         msg['To'] = 'anh00327@gmail.com, huynguyenkev@gmail.com',
         msg.set_content('Your products is under $' + MAX_PRICE + '\n' + product_title +
                         '\n' + 'New price: $' + product_price + '\n' + 'Link :' + URL)
-        '''msg.add_alternative("""
-            <!DOCTYPE html>
-            <html>
-                <body>
-                    <h2> Your featured product is under $""" + MAX_PRICE """. Don't miss it out!</h2>
-                    <ul>
-                    <li><b>Name:</b> """ + product_title + """</li>
-                    <li><b>Price:</b> $""" + product_price + """</li>
-                    <li><b>URL:</b> """ + URL + """</li>
-                    </ul>
-                    <img src='""" + product_image_url + """' width="300" height="250">
-                    <h2>Curious Coding</h2>
-                </body>
-            </html>
-        """, subtype='html')'''
 
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
 
