@@ -7,7 +7,7 @@ import time
 
 while(True):
 
-    CHROMEDRIVER = r"C:\Users\KEV\AppData\Local\Temp\Temp2_chromedriver_win32.zip\chromedriver"
+    CHROMEDRIVER = r"C:\Users\ADMIN\AppData\Local\Google\Chrome\chromedriver"
     URL = "https://www.amazon.com/gp/product/B087N4ZRXV"
 
     product_id = 'productTitle'
@@ -45,7 +45,7 @@ while(True):
     def send_mail():
         msg = EmailMessage()
         msg['Subject'] = "Amazon Price Tracker Notification"
-        msg['From'] = 'huynguyenkev@gmail.com'
+        msg['From'] = 'hungvan918491@gmail.com'
         msg['To'] = 'anh00327@gmail.com, huynguyenkev@gmail.com',
         msg.set_content('Your products is under $' + MAX_PRICE + '\n' + product_title +
                         '\n' + 'New price: $' + product_price + '\n' + 'Link :' + URL)
@@ -67,7 +67,7 @@ while(True):
 
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
 
-            smtp.login('huynguyenkev@gmail.com', 'Kuguranagaru7')
+            smtp.login('hungvan918491@gmail.com', 'zxzxzxAa')
             smtp.send_message(msg)
 
     
